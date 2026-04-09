@@ -1711,7 +1711,22 @@
   // INIT
   // ════════════════════════════════════════════════════════════
 
+  async function loadPlayerNames() {
+    try {
+      const res = await fetch('/players.json');
+      if (res.ok) {
+        const names = await res.json();
+        if (Array.isArray(names) && names.length) {
+          GITHUB_CONFIG.players = names;
+        }
+      }
+    } catch (_) {
+      // fall back to whatever is in config.js
+    }
+  }
+
   (async function init() {
+    await loadPlayerNames();
     renderSplashPlayers();
 
     // Restore player session if exists
