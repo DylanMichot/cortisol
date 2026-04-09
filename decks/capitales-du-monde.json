@@ -1,0 +1,16 @@
+{
+  "name": "Capitales du monde",
+  "tags": ["géographie", "capitales", "démo"],
+  "questions": [
+    { "id": "q001", "question": "Quelle est la capitale du Japon ?", "answer": "Tokyo", "tags": ["asie"], "difficulty": "facile" },
+    { "id": "q002", "question": "Quelle est la capitale du Brésil ?", "answer": "Brasília", "tags": ["amérique-du-sud"], "difficulty": "moyen" },
+    { "id": "q003", "question": "Quelle est la capitale de l'Australie ?", "answer": "Canberra", "tags": ["océanie"], "difficulty": "moyen" },
+    { "id": "q004", "question": "Quelle est la capitale du Canada ?", "answer": "Ottawa", "tags": ["amérique-du-nord"], "difficulty": "moyen" },
+    { "id": "q005", "question": "Quelle est la capitale de l'Égypte ?", "answer": "Le Caire", "tags": ["afrique"], "difficulty": "facile" },
+    { "id": "q006", "question": "Quelle est la capitale de l'Argentine ?", "answer": "Buenos Aires", "tags": ["amérique-du-sud"], "difficulty": "facile" },
+    { "id": "q007", "question": "Quelle est la capitale de la Norvège ?", "answer": "Oslo", "tags": ["europe"], "difficulty": "facile" },
+    { "id": "q008", "question": "Quelle est la capitale de la Thaïlande ?", "answer": "Bangkok", "tags": ["asie"], "difficulty": "moyen" },
+    { "id": "q009", "question": "Quelle est la capitale du Kenya ?", "answer": "Nairobi", "tags": ["afrique"], "difficulty": "moyen" },
+    { "id": "q010", "question": "Quelle est la capitale du Kazakhstan ?", "answer": "Astana", "tags": ["asie"], "difficulty": "difficile" }
+  ]
+}
