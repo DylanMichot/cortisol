@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+  <meta name="theme-color" content="#00ff41">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <title>CORTISOL</title>
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="app">
+    <!-- CRT Scanline overlay -->
+    <div class="scanlines" aria-hidden="true"></div>
+
+    <!-- ==================== PLAYER SELECT ==================== -->
+    <div id="screen-select" class="screen active">
+      <div class="screen-inner">
+        <h1 class="logo glitch" data-text="CORTISOL">CORTISOL</h1>
+        <p class="tagline">Souffrir ensemble, c'est r&eacute;viser.</p>
+        <div class="select-prompt">Qui es-tu ?</div>
+        <div id="player-buttons" class="player-buttons">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== HOME ==================== -->
+    <div id="screen-home" class="screen">
+      <div class="screen-inner">
+        <div class="home-header">
+          <h1 class="logo logo-sm glitch" data-text="CORTISOL">CORTISOL</h1>
+          <button id="btn-change-player" class="btn-link" aria-label="Changer de joueur">&larr; changer</button>
+        </div>
+        <div id="home-greeting" class="home-greeting"></div>
+        <div id="home-streak" class="home-streak"></div>
+        <div id="home-leaderboard-preview" class="leaderboard-preview"></div>
+        <button id="btn-play" class="btn btn-primary btn-big pulse-border">JOUER</button>
+        <button id="btn-leaderboard" class="btn btn-secondary">CLASSEMENT</button>
+      </div>
+    </div>
+
+    <!-- ==================== DECK SELECT ==================== -->
+    <div id="screen-decks" class="screen">
+      <div class="screen-inner">
+        <button class="btn-back" id="btn-back-decks">&larr;</button>
+        <h2 class="screen-title">CHOISIS TON DECK</h2>
+        <div id="deck-list" class="deck-list">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== QUIZ CONFIG ==================== -->
+    <div id="screen-config" class="screen">
+      <div class="screen-inner">
+        <button class="btn-back" id="btn-back-config">&larr;</button>
+        <h2 id="config-deck-name" class="screen-title"></h2>
+        <p id="config-deck-desc" class="screen-subtitle"></p>
+        <div id="config-draw-info" class="draw-info"></div>
+        <div class="config-options">
+          <div class="config-label">Combien de questions ?</div>
+          <div class="config-buttons">
+            <button class="btn btn-option" data-count="10">10</button>
+            <button class="btn btn-option" data-count="20">20</button>
+            <button class="btn btn-option btn-option-all" data-count="all">TOUT</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== QUIZ ==================== -->
+    <div id="screen-quiz" class="screen">
+      <div class="screen-inner quiz-layout">
+        <div class="quiz-top">
+          <div class="quiz-progress">
+            <div id="quiz-progress-bar" class="quiz-progress-bar"></div>
+          </div>
+          <div class="quiz-meta">
+            <span id="quiz-counter" class="quiz-counter"></span>
+            <span id="quiz-timer" class="quiz-timer">0:00</span>
+          </div>
+        </div>
+        <div class="card-container" id="card-container">
+          <div class="card" id="quiz-card">
+            <div class="card-face card-front">
+              <div class="card-label">QUESTION</div>
+              <div id="card-question" class="card-content"></div>
+              <div class="card-hint">Tap pour r&eacute;v&eacute;ler</div>
+            </div>
+            <div class="card-face card-back">
+              <div class="card-label">R&Eacute;PONSE</div>
+              <div id="card-answer" class="card-content"></div>
+            </div>
+          </div>
+        </div>
+        <div id="quiz-actions" class="quiz-actions hidden">
+          <button id="btn-wrong" class="btn btn-wrong">J'AI RAT&Eacute;</button>
+          <button id="btn-correct" class="btn btn-correct">J'AI BON</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== RESULTS ==================== -->
+    <div id="screen-results" class="screen">
+      <div class="screen-inner">
+        <h2 class="screen-title">R&Eacute;SULTATS</h2>
+        <div class="results-score-container">
+          <div class="results-grade" id="results-grade"></div>
+          <div class="results-score">
+            <span id="results-score-num" class="results-score-num">0</span>
+            <span class="results-score-den">/20</span>
+          </div>
+          <div id="results-detail" class="results-detail"></div>
+        </div>
+        <div id="results-time" class="results-time"></div>
+        <div id="results-roast" class="results-roast"></div>
+        <div id="results-rank" class="results-rank"></div>
+        <div class="results-actions">
+          <button id="btn-replay" class="btn btn-primary">REJOUER</button>
+          <button id="btn-home" class="btn btn-secondary">ACCUEIL</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== LEADERBOARD ==================== -->
+    <div id="screen-leaderboard" class="screen">
+      <div class="screen-inner">
+        <button class="btn-back" id="btn-back-lb">&larr;</button>
+        <h2 class="screen-title">CLASSEMENT</h2>
+        <div class="lb-tabs">
+          <button class="lb-tab active" data-tab="daily">AUJOURD'HUI</button>
+          <button class="lb-tab" data-tab="alltime">ALL TIME</button>
+        </div>
+        <div id="lb-content" class="lb-content">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== TOKEN SETUP ==================== -->
+    <div id="screen-setup" class="screen">
+      <div class="screen-inner" style="justify-content:center;align-items:center;">
+        <h1 class="logo glitch" data-text="CORTISOL">CORTISOL</h1>
+        <p class="tagline">Premi&egrave;re connexion</p>
+        <p style="color:var(--text-dim);font-size:.85rem;text-align:center;margin-bottom:20px;line-height:1.5;">
+          Entre le token GitHub pour sauvegarder les scores.<br>
+          Il sera stock&eacute; localement dans ton navigateur.
+        </p>
+        <input id="setup-token" type="password" placeholder="ghp_..." autocomplete="off"
+          style="width:100%;max-width:320px;font-family:var(--font-mono);font-size:.9rem;padding:14px 16px;
+          background:var(--bg-surface);border:2px solid #333;border-radius:var(--radius);color:var(--text);
+          margin-bottom:16px;outline:none;"
+          onfocus="this.style.borderColor='var(--primary)'" onblur="this.style.borderColor='#333'">
+        <button id="btn-save-token" class="btn btn-primary" style="max-width:320px;">ENREGISTRER</button>
+        <button id="btn-skip-token" class="btn-link" style="margin-top:12px;font-size:.75rem;">
+          Continuer sans (scores non sauvegard&eacute;s)
+        </button>
+      </div>
+    </div>
+
+    <!-- ==================== LOADING OVERLAY ==================== -->
+    <div id="loading-overlay" class="loading-overlay">
+      <div class="loading-text glitch" data-text="CHARGEMENT...">CHARGEMENT...</div>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

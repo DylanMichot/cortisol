@@ -1,0 +1,17 @@
+{
+  "name": "CORTISOL",
+  "short_name": "CORTISOL",
+  "description": "Quiz comp\u00e9titif entre potes",
+  "start_url": "./",
+  "display": "standalone",
+  "background_color": "#0a0a0a",
+  "theme_color": "#00ff41",
+  "icons": [
+    {
+      "src": "icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
