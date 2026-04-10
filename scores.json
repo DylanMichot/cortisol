@@ -1,3 +1,14 @@
 {
-  "sessions": []
+  "sessions": [
+    {
+      "player": "Didou la Déglingue",
+      "deck": "capitals",
+      "date": "2026-04-10",
+      "draw": 1,
+      "correct": 7,
+      "total": 10,
+      "score": 14,
+      "time": 42
+    }
+  ]
 }
